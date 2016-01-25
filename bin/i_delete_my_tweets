@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'semver'
+require 'dotenv'
+require 'csv'
+require 'twitter'
+require 'oauth'
+require 'active_support/all'
+require 'terminal-table'
+require 'byebug'
+require 'i_delete_my_tweets'
+
+Dotenv.overload("~/.i_delete_my_tweets")
+IDeleteMyTweets::CLI.start(ARGV)

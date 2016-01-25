@@ -1,0 +1,7 @@
+require_relative 'i_delete_my_tweets/version'
+require_relative 'i_delete_my_tweets/config'
+require_relative 'i_delete_my_tweets/presenter'
+require_relative 'i_delete_my_tweets/api'
+require_relative 'i_delete_my_tweets/ascii'
+require_relative 'i_delete_my_tweets/auth'
+require_relative 'i_delete_my_tweets/cli'

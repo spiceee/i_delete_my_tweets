@@ -1,0 +1,96 @@
+inherit_from:
+  - https://relaxed.ruby.style/rubocop.yml
+require:
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.6
+Layout/LineLength:
+  Max: 160
+Metrics:
+  Enabled: true
+Metrics/AbcSize:
+  Max: 20
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+RSpec/ExampleLength:
+  Max: 15
+RSpec/MultipleExpectations:
+  Max: 3
+RSpec/NestedGroups:
+  Max: 4
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/AnyInstance:
+  Exclude:
+    - "spec/i_delete_my_tweets/command_config_spec.rb"
+
+# I see the point but sometimes you just need to stub reader-only methods instead of
+# turning them into read-write in order to set different values for tests.
+RSpec/SubjectStub:
+  Enabled: false
+  # A bug asks to change Enumerable#all? to #be_all :shrug:
+RSpec/PredicateMatcher:
+  Exclude:
+    - "spec/i_delete_my_tweets/config_spec.rb"
+
+Metrics/AbcSize:
+  Exclude:
+    - "lib/i_delete_my_tweets/config.rb"
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - "lib/i_delete_my_tweets/config.rb"
+Metrics/PerceivedComplexity:
+  Exclude:
+    - "lib/i_delete_my_tweets/config.rb"
+Metrics/BlockLength:
+  Exclude:
+    - "i_delete_my_tweets.gemspec"
+    - spec/**/*.rb
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+Style/Lambda:
+  EnforcedStyle: literal
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  # No spaces inside hash literals
+SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+  # Enforce outdenting of access modifiers (i.e. public, private, protected)
+AccessModifierIndentation:
+  EnforcedStyle: outdent
+EmptyLinesAroundAccessModifier:
+  Enabled: true
+Lint/AmbiguousBlockAssociation:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+# Align ends correctly
+EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+# Indentation of when/else
+CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+Style/Lambda:
+  EnforcedStyle: literal
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
