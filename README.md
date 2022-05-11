@@ -63,25 +63,36 @@ Gives you the version.
 $ i_delete_my_tweets config store key value
 ```
 
-### Examples
+### Set-up
+
+- [Create a Twitter Developer Account](https://developer.twitter.com/en/apply) if you don't already have one.
+
+  You have to wait for the account to be reviewed and approved.
+
+- [Create a Twitter App](https://developer.twitter.com/en/apps/create) with read and write permission
+- Take note of the app's `CONSUMER_KEY` and `CONSUMER_SECRET`
 
 #### Config
 
 ```sh
 $ i_delete_my_tweets config store CONSUMER_KEY 9183921819809283910f
 $ i_delete_my_tweets config store CONSUMER_SECRET 0293090239-2039209302-238392839
+$ i_delete_my_tweets config store RT_THRESHOLD 2
 $ i_delete_my_tweets config store FAVE_THRESHOLD 2
 $ i_delete_my_tweets config store OLDER_THAN 2021-11-02
+$ i_delete_my_tweets config store SCREEN_NAME mytwitterhandle
 ```
 
 IDMT can generate an `ACCESS_TOKEN` and `ACCESS_TOKEN_SECRET` for you using a PIN provided
 that you do have a Twitter App setup and `CONSUMER_KEY` and `CONSUMER_SECRET`.
 
+You can bypass most of the configuration by doing a
+
 ```sh
 $ i_delete_my_tweets config authorize_with_pin <consumer-key> <consumer-value>
 ```
 
-Will generate an URL that will take you to Twitter and issue a PIN. Then IDMT will
+It will generate a URL that will take you to Twitter and issue a PIN. Then IDMT will
 configure `ACCESS_TOKEN`, `ACCESS_TOKEN_SECRET`, and `SCREEN_NAME` for you.
 
 At any point, you can check if all keys/values are good to go with
