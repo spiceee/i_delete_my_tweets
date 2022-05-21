@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'terminal-table', '~> 3.0.2'
   spec.add_dependency 'thor', '~> 1.2.1'
   spec.add_dependency 'twitter', '~> 7.0.0'
+  spec.add_dependency 'djc', '~> 1.1.1'
   spec.add_development_dependency 'bundler', '>= 1.0', '< 3'
   spec.add_development_dependency 'rubocop', '~> 1.29'
   spec.add_development_dependency 'rubocop-performance', '~> 1.13.3'
