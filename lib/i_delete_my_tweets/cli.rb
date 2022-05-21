@@ -1,6 +1,13 @@
 require 'thor'
 
 module IDeleteMyTweets
+  class CommandConvert < Thor
+    class_option :dry_run, type: :boolean, default: true
+
+    desc "convert", "Converts the tweet.js archive to csv"
+    def convert(path_to_tweets_js); end
+  end
+
   class CommandDelete < Thor
     class_option :dry_run, type: :boolean, default: true
 
@@ -134,5 +141,8 @@ module IDeleteMyTweets
 
     desc "config command ...ARGS", "Configures the Twitter app credentials"
     subcommand "config", CommandConfig
+
+    desc "convert command ...ARGS", "Converts the tweets.js archive to CSV"
+    subcommand "convert", CommandConvert
   end
 end
