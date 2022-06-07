@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module IDeleteMyTweets
   class Api
     include Presenter
@@ -27,22 +29,19 @@ module IDeleteMyTweets
     end
 
     def traverse_csv!
-      CSV.foreach(config.path_to_csv, headers: true) do |tweet|
-        if to_time(tweet["timestamp"]) >= config.older_than
-          self.skipped_count += 1
-          next
-        end
-
-        tw_data = fetch_tweet(tweet["tweet_id"])
-        next if tw_data.nil?
-
-        if can_be_destroyed?(tw_data)
-          destroy_with_retry(tw_data)
+      CSV.foreach(config.path_to_csv, headers: true) do |row|
+        tweet = csv_row_to_struct(row)
+        if can_be_destroyed?(tweet)
+          destroy_with_retry(tweet)
           sleep a_bit
         else
           self.skipped_count += 1
         end
       end
+    rescue IOError
+      do_log(" 💥 Oops, there was a connection error! ", color: :red)
+    ensure
+      do_log summary delete_count, skipped_count, not_found_count, dry_run
     end
 
     def client
@@ -140,6 +139,16 @@ module IDeleteMyTweets
       end
     rescue HTTP::ConnectionError
       do_log(" 💥 Oops, there was a connection error fetching your tweets! ", color: :red)
+    end
+
+    def csv_row_to_struct(row)
+      tweet_struct = Struct.new(:id, :timestamp, :favorite_count, :retweet_count, :created_at, :text, keyword_init: true)
+      tweet_struct.new(id: row["tweet_id"],
+                       text: row["text"],
+                       timestamp: row["timestamp"],
+                       created_at: to_time(row["timestamp"]),
+                       favorite_count: row["favorite_count"],
+                       retweet_count: row["retweet_count"])
     end
   end
 end
