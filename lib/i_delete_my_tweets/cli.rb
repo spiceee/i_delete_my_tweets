@@ -2,7 +2,10 @@ require 'thor'
 
 module IDeleteMyTweets
   class CommandConvert < Thor
+    include Presenter
+
     class_option :dry_run, type: :boolean, default: true
+
     KEYS = %w(id retweet_count favorite_count created_at full_text).freeze
     HEADERS = %w(tweet_id retweet_count favorite_count created_at text).freeze
 
@@ -22,7 +25,7 @@ module IDeleteMyTweets
     def save_to_csv(path_to_tweets_js)
       CSV.open("converted_tweets_js.csv", "w") do |csv|
         csv << HEADERS
-        JSON.parse(File.read(path_to_tweets_js)).each do |hash|
+        JSON.parse(File.read(path_to_tweets_js)).with_progress('Converting your tweets') do |hash|
           csv << hash["tweet"].fetch_values(*KEYS)
         end
       end
