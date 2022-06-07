@@ -43,6 +43,12 @@ RSpec/PredicateMatcher:
 Metrics/AbcSize:
   Exclude:
     - "lib/i_delete_my_tweets/config.rb"
+Metrics/MethodLength:
+  Exclude:
+    - "lib/i_delete_my_tweets/api.rb"
+Metrics/ClassLength:
+  Exclude:
+    - "lib/i_delete_my_tweets/api.rb"
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/i_delete_my_tweets/config.rb"
