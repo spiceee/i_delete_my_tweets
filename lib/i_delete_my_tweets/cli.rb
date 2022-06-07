@@ -2,20 +2,28 @@ require 'thor'
 
 module IDeleteMyTweets
   class CommandConvert < Thor
-    include Presenter
-
     class_option :dry_run, type: :boolean, default: true
+
+    include Presenter
 
     KEYS = %w(id retweet_count favorite_count created_at full_text).freeze
     HEADERS = %w(tweet_id retweet_count favorite_count created_at text).freeze
 
     desc "to_csv", "Converts the tweet.js archive to csv"
     def to_csv(path_to_tweets_js)
-      `sed -i"" -e "s/window.YTD.tweet.part0 = //g" #{path_to_tweets_js}`
-      if $?.success?
+      if js_to_json(path_to_tweets_js)
         save_to_csv(path_to_tweets_js)
         say set_color " ✅ Success: << #{path_to_tweets_js} >> was converted to << converted_tweets_js.csv >>!", :white, :on_green, :bold
+      else
+        say set_color " 🚫 Something went wrong with sed. Make sure you have it available in your terminal. ", :white, :on_red, :bold
       end
+    rescue StandardError => e
+      say_error e.message
+    end
+
+    desc "js_to_json", "Converts the tweet.js to a valid JSON"
+    def js_to_json(path_to_tweets_js)
+      system(%(sed -i"" -e "s/window.YTD.tweet.part0 = //g" #{path_to_tweets_js}))
     rescue StandardError => e
       say_error e.message
     end
