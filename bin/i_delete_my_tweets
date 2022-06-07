@@ -10,7 +10,6 @@ require 'twitter'
 require 'oauth'
 require 'active_support/all'
 require 'terminal-table'
-require 'djc'
 require 'byebug'
 require 'i_delete_my_tweets'
 

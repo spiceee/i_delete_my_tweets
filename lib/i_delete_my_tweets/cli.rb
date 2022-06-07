@@ -3,9 +3,30 @@ require 'thor'
 module IDeleteMyTweets
   class CommandConvert < Thor
     class_option :dry_run, type: :boolean, default: true
+    KEYS = %w(id retweet_count favorite_count created_at full_text).freeze
+    HEADERS = %w(tweet_id retweet_count favorite_count created_at text).freeze
 
-    desc "convert", "Converts the tweet.js archive to csv"
-    def convert(path_to_tweets_js); end
+    desc "to_csv", "Converts the tweet.js archive to csv"
+    def to_csv(path_to_tweets_js)
+      `sed -i"" -e "s/window.YTD.tweet.part0 = //g" #{path_to_tweets_js}`
+      if $?.success?
+        save_to_csv(path_to_tweets_js)
+        say set_color "Success: #{path_to_tweets_js} was converted to converted_tweets_js.csv!", :green, :bold
+      end
+    rescue StandardError => e
+      say_error e.message
+    end
+
+  private
+
+    def save_to_csv(path_to_tweets_js)
+      CSV.open("converted_tweets_js.csv", "w") do |csv|
+        csv << HEADERS
+        JSON.parse(File.read(path_to_tweets_js)).each do |hash|
+          csv << hash["tweet"].fetch_values(*KEYS)
+        end
+      end
+    end
   end
 
   class CommandDelete < Thor
