@@ -11,7 +11,7 @@ module IDeleteMyTweets
       `sed -i"" -e "s/window.YTD.tweet.part0 = //g" #{path_to_tweets_js}`
       if $?.success?
         save_to_csv(path_to_tweets_js)
-        say set_color "Success: #{path_to_tweets_js} was converted to converted_tweets_js.csv!", :green, :bold
+        say set_color " ✅ Success: << #{path_to_tweets_js} >> was converted to << converted_tweets_js.csv >>!", :white, :on_green, :bold
       end
     rescue StandardError => e
       say_error e.message
