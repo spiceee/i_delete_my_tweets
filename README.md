@@ -1,5 +1,7 @@
 # I Delete My Tweets
 
+[![Coverage Status](https://coveralls.io/repos/github/spiceee/i_delete_my_tweets/badge.svg?branch=chore/add-github-action)](https://coveralls.io/github/spiceee/i_delete_my_tweets?branch=chore/add-github-action)
+
 <img width="800" alt="Screen Shot 2022-05-11 at 19 04 53" src="https://user-images.githubusercontent.com/12278/167955371-a24ec8e6-bd9a-4014-bc25-9fb9e3cb21ce.png">
 
 A **CLI** (as in Command Line Interface) to delete your tweets based on faves, RTs, and time.
