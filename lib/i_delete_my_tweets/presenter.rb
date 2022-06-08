@@ -50,7 +50,7 @@ module IDeleteMyTweets
       text.gsub(/^(.{40,}?).*$/m, '\1...')
     end
 
-    def to_time(timestamp)
+    def to_date(timestamp)
       Date.parse timestamp
     end
 
