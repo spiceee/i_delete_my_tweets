@@ -10,6 +10,7 @@ require 'twitter'
 require 'oauth'
 require 'active_support/all'
 require 'terminal-table'
+require 'progress'
 require 'byebug'
 require 'i_delete_my_tweets'
 

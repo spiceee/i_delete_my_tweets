@@ -54,9 +54,9 @@ describe IDeleteMyTweets::Presenter do
     end
   end
 
-  describe '#to_time' do
+  describe '#to_date' do
     it "formats a timestamp to a shorter date" do
-      expect(dummy.to_time("2008-03-09 00:00:00 +0000").to_s).to eq "2008-03-09"
+      expect(dummy.to_date("2008-03-09 00:00:00 +0000").to_s).to eq "2008-03-09"
     end
   end
 end

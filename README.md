@@ -2,7 +2,6 @@
 
 <img width="800" alt="Screen Shot 2022-05-11 at 19 04 53" src="https://user-images.githubusercontent.com/12278/167955371-a24ec8e6-bd9a-4014-bc25-9fb9e3cb21ce.png">
 
-
 A **CLI** (as in Command Line Interface) to delete your tweets based on faves, RTs, and time.
 
 There are some services out there with a friendly web interface, but this is not one of them.
@@ -16,7 +15,13 @@ Called with `--dry-run=false`, there is no way to revoke tweet deletion. They ar
 
 This tool won't delete all of your tweets in one fell swoop; it is more of a way to delete your old tweets from time to time. The [Twitter API rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits) are relatively complicated, and I don't even wanna go there, but if you do intend on deleting all of your tweets, you can do it with this CLI and some perseverance. I did delete more than 100k of mine by using this script every day for a couple of weeks. The more tweets you delete, the fewer of them you have, and with time the rate limits won't be that much of a problem.
 
-I Delete My Tweets (IDMT) can delete your tweets by fetching them via API using an APP you will have to set up yourself. Still, it can also delete tweets from an CSV (comma-separated file) that you can generate from the archive you can request from twitter.com by going to Settings and privacy > Your Account > Download an archive of your data. It is out of the scope of this CLI to generate the CSV (at the moment) but [there are scripts out there](https://gist.github.com/jessefogarty/b0f2d4ea6bdd770e5e9e94d54154c751) that can do this for you.
+I Delete My Tweets (IDMT) can delete your tweets by fetching them via API using an APP you will have to set up yourself. Still, it can also delete tweets from an CSV (comma-separated file) that you can generate from the archive you can request from twitter.com by going to Settings and privacy > Your Account > Download an archive of your data. Once you get your zipped archive from Twitter, unzip it, and find the `tweet.js` file.
+
+IDMT can convert that into a CSV file with:
+
+```sh
+$ i_delete_my_tweets convert to_csv path_to_tweet.js
+```
 
 > TIP: You can find an example of the CSV header in the project's root folder.
 

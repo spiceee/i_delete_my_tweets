@@ -32,3 +32,8 @@ Gemfile.lock
 .powenv
 
 .byebug_history
+
+tweet.js
+converted_tweets_js.csv
+tweet.js-e
+tweet copy.js
