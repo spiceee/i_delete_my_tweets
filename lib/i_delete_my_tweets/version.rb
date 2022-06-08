@@ -1,11 +1,18 @@
-require 'semver'
+require 'yaml'
 
 module IDeleteMyTweets
   module Version
   module_function
 
     def parsed_version
-      @parsed_version ||= SemVer.find
+      @parsed_version ||= begin
+        hash = YAML.load_file('.semver')
+        Struct.new(:major, :minor,
+                   :patch, :special,
+                   :metadata, :prerelease, keyword_init: true).new(major: hash[:major], minor: hash[:minor],
+                                                                   patch: hash[:patch], special: hash[:special],
+                                                                   metadata: hash[:metadata], prerelease: hash[:prerelease])
+      end
     end
 
     # @return [Integer]
@@ -25,7 +32,7 @@ module IDeleteMyTweets
 
     # @return [Integer, NilClass]
     def pre
-      parsed_version.prerelease.empty? ? nil : parsed_version.prerelease
+      parsed_version.prerelease && parsed_version.prerelease.empty? ? nil : parsed_version.prerelease
     end
 
     # @return [Hash]
