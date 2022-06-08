@@ -142,12 +142,11 @@ module IDeleteMyTweets
     end
 
     def csv_row_to_struct(row)
-      Struct.new(:id, :timestamp, :favorite_count,
+      Struct.new(:id, :favorite_count,
                  :retweet_count, :created_at,
                  :text, keyword_init: true).new(id: row["tweet_id"],
                                                 text: row["text"],
-                                                timestamp: row["timestamp"],
-                                                created_at: to_time(row["timestamp"]),
+                                                created_at: to_date(row["created_at"]),
                                                 favorite_count: row["favorite_count"],
                                                 retweet_count: row["retweet_count"])
     end
