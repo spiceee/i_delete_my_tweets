@@ -9,9 +9,9 @@ name: Ruby
 
 on:
   push:
-    branches: ["chore/add-github-action"]
+    branches: ["master"]
   pull_request:
-    branches: ["chore/add-github-action"]
+    branches: ["master"]
 
 permissions:
   contents: read
