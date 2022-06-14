@@ -10,6 +10,7 @@ module IDeleteMyTweets
     "PATH_TO_CSV",
     "FAVE_THRESHOLD",
     "RT_THRESHOLD",
+    "WITH_WORDS",
     "SCREEN_NAME"
   ].freeze
   PATH_TO_ENV = "~/.i_delete_my_tweets".freeze
@@ -24,6 +25,7 @@ module IDeleteMyTweets
                   :path_to_csv,
                   :fave_threshold,
                   :rt_threshold,
+                  :with_words,
                   :screen_name
 
     def initialize(opts = {})
@@ -35,6 +37,7 @@ module IDeleteMyTweets
       @path_to_csv = opts[:path_to_csv] || ENV.fetch("PATH_TO_CSV", "./")
       @fave_threshold = opts[:fave_threshold] || ENV.fetch("FAVE_THRESHOLD", 0)
       @rt_threshold = opts[:rt_threshold] || ENV.fetch("RT_THRESHOLD", 0)
+      @with_words = opts[:with_words] || ENV.fetch("WITH_WORDS", [])
       @screen_name = opts[:screen_name] || ENV.fetch("SCREEN_NAME", "")
     end
 
