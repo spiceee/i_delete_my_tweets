@@ -22,7 +22,7 @@ describe IDeleteMyTweets::Config do
 
   describe '#zipped' do
     it "returns an array with all properties" do
-      expect(config.zipped).to satisfy { |zip| zip.length == 9 }
+      expect(config.zipped).to satisfy { |zip| zip.length == 10 }
     end
 
     it "returns tuples" do
