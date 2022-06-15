@@ -107,5 +107,25 @@ describe IDeleteMyTweets::Config do
       config.with_words = "trump, musk, bolsonaro"
       expect("bolsonaro".match(config.compiled_words_regex)).to be_truthy
     end
+
+    it "generates a regex that matches a hashtag" do
+      config.with_words = "#fml, #tbt"
+      expect("i love mondays #fml".match(config.compiled_words_regex)).to be_truthy
+    end
+
+    it "generates a regex that does not match bad hashtags" do
+      config.with_words = "#fml, #tbt"
+      expect("i love mon#tbtdays".match(config.compiled_words_regex)).to be_falsey
+    end
+
+    it "generates a regex that does not match words in the hashtag with no hash" do
+      config.with_words = "#fml, #tbt"
+      expect("i love tbts".match(config.compiled_words_regex)).to be_falsey
+    end
+
+    it "generates a regex that matches hashtags begin-of-line" do
+      config.with_words = "#fml, #tbt"
+      expect("#fml".match(config.compiled_words_regex)).to be_truthy
+    end
   end
 end
