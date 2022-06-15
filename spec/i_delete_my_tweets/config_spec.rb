@@ -11,6 +11,7 @@ describe IDeleteMyTweets::Config do
       path_to_csv: './tweets.csv',
       fave_threshold: 1,
       rt_threshold: 1,
+      with_words: nil,
       screen_name: 'filthy_billionaire'
     )
   }
@@ -74,6 +75,15 @@ describe IDeleteMyTweets::Config do
     it "returns an array with keys that are empty" do
       config.screen_name, config.consumer_key = nil, nil
       expect(config.empty_values).to include('SCREEN_NAME', 'CONSUMER_KEY')
+    end
+
+    it "includes with_words in the OPTIONALS list" do
+      expect(IDeleteMyTweets::OPTIONALS).to include("with_words")
+    end
+
+    it "ignores empty values if the config name is in OPTIONAL" do
+      config.with_words = nil
+      expect(config.empty_values).to be_empty
     end
   end
 end

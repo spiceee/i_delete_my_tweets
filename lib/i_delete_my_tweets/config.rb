@@ -15,7 +15,7 @@ module IDeleteMyTweets
   ].freeze
   PATH_TO_ENV = "~/.i_delete_my_tweets".freeze
   OBFUSCATE_WORDS = %w(secret token key).freeze
-  OPTIONAL = %w(with_words).freeze
+  OPTIONALS = %w(with_words).freeze
 
   class Config
     attr_accessor :consumer_key,
@@ -66,7 +66,7 @@ module IDeleteMyTweets
     end
 
     def empty_values
-      zipped.reject{ |tuples| OPTIONAL.member?(tuples.first.downcase) }
+      zipped.reject{ |tuples| OPTIONALS.member?(tuples.first.downcase) }
             .map { |tuples| tuples.second.to_s.empty? ? tuples.first : nil }
             .compact
     end
