@@ -72,7 +72,7 @@ module IDeleteMyTweets
     end
 
     def compiled_words_regex
-      @compiled_words_regex ||= Regexp.union(with_words.split(",").map(&:squish).map { |w| /^#{Regexp.quote(w)}$/i })
+      @compiled_words_regex ||= Regexp.union(with_words.split(",").map(&:squish).map { |w| /\b#{Regexp.quote(w)}\b/i })
     end
 
   private
