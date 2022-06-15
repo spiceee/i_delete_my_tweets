@@ -86,4 +86,26 @@ describe IDeleteMyTweets::Config do
       expect(config.empty_values).to be_empty
     end
   end
+
+  describe '#compiled_words_regex' do
+    it "returns a compiled regex with the union of the word matchers" do
+      config.with_words = "trump, musk, bolsonaro"
+      expect(config.compiled_words_regex).to be_a(Regexp)
+    end
+
+    it "generates a regex that matches trump" do
+      config.with_words = "trump, musk, bolsonaro"
+      expect("trump".match(config.compiled_words_regex)).to be_truthy
+    end
+
+    it "generates a regex that matches musk" do
+      config.with_words = "trump, musk, bolsonaro"
+      expect("musk".match(config.compiled_words_regex)).to be_truthy
+    end
+
+    it "generates a regex that matches bolsonaro" do
+      config.with_words = "trump, musk, bolsonaro"
+      expect("bolsonaro".match(config.compiled_words_regex)).to be_truthy
+    end
+  end
 end

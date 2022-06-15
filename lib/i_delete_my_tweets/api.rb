@@ -117,6 +117,12 @@ module IDeleteMyTweets
       tweet.retweet_count < config.rt_threshold.to_i
     end
 
+    def include_words?(tweet)
+      return false if config.with_words.empty?
+
+      tweet.text.match(config.compiled_words_regex)
+    end
+
     def can_be_destroyed?(tweet)
       return false unless satisfies_older_than? tweet
       return false unless bellow_fave_threshold? tweet

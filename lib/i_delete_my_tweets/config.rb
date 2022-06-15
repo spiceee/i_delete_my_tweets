@@ -71,6 +71,10 @@ module IDeleteMyTweets
             .compact
     end
 
+    def compiled_words_regex
+      @compiled_words_regex ||= Regexp.union(with_words.split(",").map(&:squish).map { |w| /^#{Regexp.quote(w)}$/i })
+    end
+
   private
 
     def obfuscate_token(token)
