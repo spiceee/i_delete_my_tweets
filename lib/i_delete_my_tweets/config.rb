@@ -66,13 +66,17 @@ module IDeleteMyTweets
     end
 
     def empty_values
-      zipped.reject{ |tuples| OPTIONALS.member?(tuples.first.downcase) }
+      zipped.reject { |tuples| OPTIONALS.member?(tuples.first.downcase) }
             .map { |tuples| tuples.second.to_s.empty? ? tuples.first : nil }
             .compact
     end
 
     def compiled_words_regex
-      @compiled_words_regex ||= Regexp.union(with_words.split(",").map(&:squish).map { |w| /\b#{Regexp.quote(w)}\b/i })
+      @compiled_words_regex ||= Regexp.union(
+        with_words.split(",")
+          .map(&:squish)
+          .map { |word| /(?<=[\s>]|^)#{Regexp.quote(word)}\b/i }
+      )
     end
 
   private
