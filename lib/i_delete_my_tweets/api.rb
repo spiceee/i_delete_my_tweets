@@ -127,11 +127,11 @@ module IDeleteMyTweets
       if config.with_words.empty?
         return false unless bellow_fave_threshold? tweet
         return false unless bellow_rt_threshold? tweet
-      elsif includes_words?(tweet)
-        return false
-      end
 
-      true
+        true
+      else
+        includes_words?(tweet)
+      end
     end
 
     def collect_with_max_id(collection = [], max_id = nil, &block)

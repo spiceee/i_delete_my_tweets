@@ -121,7 +121,7 @@ describe IDeleteMyTweets::Api do
         capture_warning do
           api.traverse_api!
           expect(a_request(:post, match_all_delete_req))
-            .to have_been_made.times(7)
+            .to have_not_been_made
         end
       end
 
@@ -131,7 +131,7 @@ describe IDeleteMyTweets::Api do
         capture_warning do
           api.traverse_api!
           expect(a_request(:post, match_all_delete_req))
-            .to have_been_made.times(5)
+            .to have_been_made.times(2)
         end
       end
 
@@ -141,7 +141,7 @@ describe IDeleteMyTweets::Api do
         capture_warning do
           api.traverse_api!
           expect(a_request(:post, match_all_delete_req))
-            .to have_been_made.times(5)
+            .to have_been_made.times(2)
         end
       end
 
@@ -151,7 +151,7 @@ describe IDeleteMyTweets::Api do
         capture_warning do
           api.traverse_api!
           expect(a_request(:post, match_all_delete_req))
-            .to have_been_made.times(6)
+            .to have_been_made.once
         end
       end
     end
