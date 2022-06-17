@@ -92,6 +92,7 @@ $ i_delete_my_tweets config store RT_THRESHOLD 2
 $ i_delete_my_tweets config store FAVE_THRESHOLD 2
 $ i_delete_my_tweets config store OLDER_THAN 2021-11-02
 $ i_delete_my_tweets config store SCREEN_NAME mytwitterhandle
+$ i_delete_my_tweets config store WITH_WORDS "#fml, #drunktweets, rogan"
 ```
 
 IDMT can generate an `ACCESS_TOKEN` and `ACCESS_TOKEN_SECRET` for you using a PIN provided
