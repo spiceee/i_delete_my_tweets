@@ -31,17 +31,18 @@ These are the keys/values that make the script work. They are read from and writ
 a `.i_delete_my_tweets` env file in your user directory (~/). You can fill
 the values yourself or work with the <config store> commands (see Usage) to do that interactively.
 
-| KEY                 | VALUE                       | DESCRIPTION                              |
-| ------------------- | --------------------------- | ---------------------------------------- |
-| CONSUMER_KEY        | String                      | Your Twitter App key                     |
-| CONSUMER_SECRET     | String                      | Your Twitter App secret                  |
-| ACCESS_TOKEN        | String                      | Account access token                     |
-| ACCESS_TOKEN_SECRET | String                      | Access token secret                      |
-| OLDER_THAN          | "2022-04-28 21:20:47 -0300" | A timestamp                              |
-| PATH_TO_CSV         | './tweets.csv'              | A path to a CSV file                     |
-| FAVE_THRESHOLD      | 3                           | Minimum number of faves to skip deletion |
-| RT_THRESHOLD        | 5                           | Minimum number of RTs to skip deletion   |
-| SCREEN_NAME         | jack                        | The account screen_name                  |
+| KEY                 | VALUE                       | DESCRIPTION                                                                                                                                                                                                                                                         |
+| ------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CONSUMER_KEY        | String                      | Your Twitter App key                                                                                                                                                                                                                                                |
+| CONSUMER_SECRET     | String                      | Your Twitter App secret                                                                                                                                                                                                                                             |
+| ACCESS_TOKEN        | String                      | Account access token                                                                                                                                                                                                                                                |
+| ACCESS_TOKEN_SECRET | String                      | Access token secret                                                                                                                                                                                                                                                 |
+| OLDER_THAN          | "2022-04-28 21:20:47 -0300" | A timestamp (code to avoid system parser problems)                                                                                                                                                                                                                  |
+| PATH_TO_CSV         | './tweets.csv'              | A path to a CSV file                                                                                                                                                                                                                                                |
+| FAVE_THRESHOLD      | 3                           | Minimum number of faves to skip deletion                                                                                                                                                                                                                            |
+| RT_THRESHOLD        | 5                           | Minimum number of RTs to skip deletion                                                                                                                                                                                                                              |
+| WITH_WORDS          | #FML, trump, musk           | A comma-separated list of words and hashtags that, if found on a tweet, would delete it immediately.<br>If this list is _not_ empty, IDMT will use the words only and bypass any FAVE or RT threshold criteria.<br>OLDER_THAN is always taken into account, though. |
+| SCREEN_NAME         | jack                        | The account screen_name                                                                                                                                                                                                                                             |
 
 Since you have to call commands with `--dry-run=false` for them to really take action, just play around with the skip rules before using `--dry-run=false` and see what works for you.
 
@@ -91,6 +92,7 @@ $ i_delete_my_tweets config store RT_THRESHOLD 2
 $ i_delete_my_tweets config store FAVE_THRESHOLD 2
 $ i_delete_my_tweets config store OLDER_THAN 2021-11-02
 $ i_delete_my_tweets config store SCREEN_NAME mytwitterhandle
+$ i_delete_my_tweets config store WITH_WORDS "#fml, #drunktweets, rogan"
 ```
 
 IDMT can generate an `ACCESS_TOKEN` and `ACCESS_TOKEN_SECRET` for you using a PIN provided

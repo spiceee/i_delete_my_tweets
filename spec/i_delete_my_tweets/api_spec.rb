@@ -12,7 +12,8 @@ describe IDeleteMyTweets::Api do
     IDeleteMyTweets::Config.new(screen_name: 'spiceee',
                                 older_than: 1.hour.ago,
                                 fave_threshold: 0,
-                                rt_threshold: 0,)
+                                rt_threshold: 0,
+                                with_words: nil)
   end
 
   let(:match_all_delete_req) { %r{#{Twitter::REST::Request::BASE_URL}/1\.1/statuses/destroy/([0-9]+)\.json}o }
@@ -100,6 +101,57 @@ describe IDeleteMyTweets::Api do
             .to have_been_made.times(6)
           expect(a_request(:post, "#{Twitter::REST::Request::BASE_URL}/1.1/statuses/destroy/1521875982155763713.json"))
             .to have_not_been_made
+        end
+      end
+    end
+
+    describe 'with words criteria' do
+      let(:rt_threshold) { 0 }
+      let(:fave_threshold) { 0 }
+      let(:with_words) { "#TBT, #drunktweets, trump" }
+      let(:with_words2) { "bozo, FedEx" }
+      let(:with_words3) { "bozo, fedex" }
+      let(:with_words4) { "something, #sad" }
+
+      it 'skips tweets that do not include the denylist' do
+        allow(config).to receive(:with_words).and_return(with_words)
+        allow(config).to receive(:rt_threshold).and_return(rt_threshold)
+        allow(config).to receive(:fave_threshold).and_return(fave_threshold)
+
+        capture_warning do
+          api.traverse_api!
+          expect(a_request(:post, match_all_delete_req))
+            .to have_not_been_made
+        end
+      end
+
+      it 'deletes tweets with any of the words' do
+        allow(config).to receive(:with_words).and_return(with_words2)
+
+        capture_warning do
+          api.traverse_api!
+          expect(a_request(:post, match_all_delete_req))
+            .to have_been_made.times(2)
+        end
+      end
+
+      it 'deletes tweets with any of the case variations of words' do
+        allow(config).to receive(:with_words).and_return(with_words3)
+
+        capture_warning do
+          api.traverse_api!
+          expect(a_request(:post, match_all_delete_req))
+            .to have_been_made.times(2)
+        end
+      end
+
+      it 'deletes tweets with hashtags' do
+        allow(config).to receive(:with_words).and_return(with_words4)
+
+        capture_warning do
+          api.traverse_api!
+          expect(a_request(:post, match_all_delete_req))
+            .to have_been_made.once
         end
       end
     end
