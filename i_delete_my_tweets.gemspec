@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport', '~> 6.1.5.1'
   spec.add_dependency 'csv', '~> 3.0.9'
   spec.add_dependency 'dotenv', '~> 2.7.6'
-  spec.add_dependency 'oauth', '>= 0.5.5'
+  spec.add_dependency 'oauth', '~> 0.5.5'
   spec.add_dependency 'progress', '~> 3.6.0'
   spec.add_dependency 'terminal-table', '~> 3.0.2'
   spec.add_dependency 'thor', '~> 1.2.1'
