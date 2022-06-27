@@ -4,7 +4,7 @@
 
 <img width="800" alt="Screen Shot 2022-05-11 at 19 04 53" src="https://user-images.githubusercontent.com/12278/167955371-a24ec8e6-bd9a-4014-bc25-9fb9e3cb21ce.png">
 
-A **CLI** (as in Command Line Interface) to delete your tweets based on faves, RTs, and time.
+A **CLI** (as in Command Line Interface) to delete your tweets based on faves, RTs, words, hashtags, and time.
 
 There are some services out there with a friendly web interface, but this is not one of them.
 You must know the basics of working with a UNIX terminal and configuring a Twitter API app, as this
