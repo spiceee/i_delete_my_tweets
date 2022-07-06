@@ -13,7 +13,7 @@ will only work if you have a Twitter Developer account.
 Due to the irrevocable nature of tweet deletion, all delete commands are `dry-run` true, meaning
 you must call all of them with a `--dry-run=false` flag if you want them to really do something.
 
-Called with `--dry-run=false`, there is no way to revoke tweet deletion. They are just gone, disappeared into the ether (or the stashed in the Twitter-owned secret place you have no access to without a mandate since nothing gets _really_ deleted from the web these days, folks).
+Called with `--dry-run=false`, there is no way to revoke tweet deletion. They are just gone, disappeared into the ether (or stashed in the Twitter-owned secret place you have no access to without a mandate since nothing gets _really_ deleted from the web these days, folks).
 
 This tool won't delete all of your tweets in one fell swoop; it is more of a way to delete your old tweets from time to time. The [Twitter API rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits) are relatively complicated, and I don't even wanna go there, but if you do intend on deleting all of your tweets, you can do it with this CLI and some perseverance. I did delete more than 100k of mine by using this script every day for a couple of weeks. The more tweets you delete, the fewer of them you have, and with time the rate limits won't be that much of a problem.
 
@@ -119,7 +119,7 @@ $ i_delete_my_tweets config check
 $ i_delete_my_tweets delete start
 ```
 
-Will start traversing the API for your tweets and applying the `OLDER_THAN`, `FAVE_THRESHOLD`, and `RT_THRESHOLD` rules (they are applied in this order). The rules are NOT combined. If the first one matches the data in the tweet, the tweet is skipped, next one.
+Will start traversing the API for your tweets and applying the `OLDER_THAN`, `FAVE_THRESHOLD`, and `RT_THRESHOLD` rules (they are applied in this order). These rules are NOT COMBINED; the tweet is deleted if one of the rules matches. If you set up words or hashtags, then IDMT will use those to match tweets up to deletion; `OLDER_THAN` and presence in `WITH_WORDS` will be used as criteria instead.
 
 Pass in `--dry-run=false` if you REALLY want to delete them otherwise this command will just output the tweets it would delete but doesn't because
 the default flag for delete commands is `--dry-run=true`.
