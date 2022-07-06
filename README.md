@@ -17,7 +17,9 @@ Called with `--dry-run=false`, there is no way to revoke tweet deletion. They ar
 
 This tool won't delete all of your tweets in one fell swoop; it is more of a way to delete your old tweets from time to time. The [Twitter API rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits) are relatively complicated, and I don't even wanna go there, but if you do intend on deleting all of your tweets, you can do it with this CLI and some perseverance. I did delete more than 100k of mine by using this script every day for a couple of weeks. The more tweets you delete, the fewer of them you have, and with time the rate limits won't be that much of a problem.
 
-I Delete My Tweets (IDMT) can delete your tweets by fetching them via API using an APP you will have to set up yourself. Still, it can also delete tweets from an CSV (comma-separated file) that you can generate from the archive you can request from twitter.com by going to Settings and privacy > Your Account > Download an archive of your data. Once you get your zipped archive from Twitter, unzip it, and find the `tweet.js` file.
+I Delete My Tweets (IDMT) can delete your tweets by fetching them via API using an APP you will have to set up yourself. Still, it can also delete tweets from a CSV (comma-separated file) that you can generate from the archive you can request from twitter.com by going to `Settings and privacy > Your Account > Download an archive of your data`. 
+
+Once you get your zipped archive from Twitter, unzip it, and find the `tweet.js` file.
 
 IDMT can convert that into a CSV file with:
 
