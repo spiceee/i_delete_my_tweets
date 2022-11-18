@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'dotenv', '~> 2.7.6'
   spec.add_dependency 'oauth', '~> 0.5.5'
   spec.add_dependency 'progress', '~> 3.6.0'
+  spec.add_dependency 'semver2', '~> 3.4.2'
   spec.add_dependency 'terminal-table', '~> 3.0.2'
   spec.add_dependency 'thor', '~> 1.2.1'
   spec.add_dependency 'twitter', '~> 7.0.0'
@@ -15,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 1.29'
   spec.add_development_dependency 'rubocop-performance', '~> 1.13.3'
   spec.add_development_dependency 'rubocop-rspec', '~> 2.10.0'
-  spec.add_development_dependency 'semver2', '~> 3.4.2'
   spec.authors = %w('Fabio Mont Alegre')
   spec.platform = Gem::Platform::RUBY
   spec.description = IDeleteMyTweets::Description
