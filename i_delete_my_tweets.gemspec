@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'i_delete_my_tweets/version'
 
 Gem::Specification.new do |spec|
-  spec.add_dependency 'activesupport', '~> 6.1.5.1'
+  spec.add_dependency 'activesupport', '~> 6.1.7.3'
   spec.add_dependency 'csv', '~> 3.0.9'
   spec.add_dependency 'dotenv', '~> 2.7.6'
   spec.add_dependency 'oauth', '~> 0.5.5'
