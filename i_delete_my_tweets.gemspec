@@ -30,5 +30,5 @@ Gem::Specification.new do |spec|
   spec.summary = 'A CLI to delete your tweets based on faves, RTs, and time.'
   spec.files = Dir["*.md", "bin/*", "lib/**/*.rb"] + %w(.env.sample .env.test tweets.csv i_delete_my_tweets.gemspec)
   spec.version = IDeleteMyTweets::Version
-  spec.metadata['rubygems_mfa_required'] = 'true'
+  spec.metadata = { 'github_repo' => 'ssh://github.com/spiceee/i_delete_my_tweets', "rubygems_mfa_required" => 'true' }
 end
